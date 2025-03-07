@@ -20,8 +20,8 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-	@column(columnDefinition = "char(15)", nullable = false, unique = true, updatable = false)
-	private String isbn;
+    @Column(columnDefinition = "char(15)", nullable = false, unique = true, updatable = false)
+    private String isbn;
 
     @Column(nullable = false, unique = true, length = 200)
     private String titulo;
