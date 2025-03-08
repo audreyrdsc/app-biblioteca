@@ -1,4 +1,4 @@
-package entities;
+package com.unifap.biblioteca.entities;
 
 import java.util.Date;
 
