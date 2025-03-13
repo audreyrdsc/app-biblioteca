@@ -31,7 +31,7 @@ Esta é uma simples aplicação onde usuários podem ser cadastrados e realizar 
 * [Audrey Regison dos Santos Cardoso](mailto:audreyrdsc@gmail.com)
 * [Francisco Ferreira Brito Neto](mailto:neto.fra18@gmail.com)
 * [João Amaral Alexandre do Amaral](mailto:joaoamaral836@gmail.com)
-* [Luís Sérgio Nascimento Lago](mailto:luissergio1706@gmail.com)
+* [Joelden Moraes Lopes](mailto:joelden.ap@gmail.com)
 
 ---
 

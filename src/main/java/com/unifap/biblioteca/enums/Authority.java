@@ -1,6 +1,5 @@
 package com.unifap.biblioteca.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
