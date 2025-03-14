@@ -9,6 +9,6 @@ import com.unifap.biblioteca.entities.Cliente;
 
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, long>{
+public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
 }

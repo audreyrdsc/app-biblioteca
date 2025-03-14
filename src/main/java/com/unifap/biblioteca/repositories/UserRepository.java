@@ -9,6 +9,6 @@ import com.unifap.biblioteca.entities.User;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User, long>{
+public interface UserRepository extends JpaRepository<User, Long>{
 
 }
