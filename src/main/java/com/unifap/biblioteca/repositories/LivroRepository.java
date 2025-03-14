@@ -9,6 +9,6 @@ import com.unifap.biblioteca.entities.Livro;
 
 
 @Repository
-public interface LivroRepository extends JpaRepository<Livro, long>{
+public interface LivroRepository extends JpaRepository<Livro, Long>{
 
 }
