@@ -18,7 +18,7 @@ public class Livro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(columnDefinition = "char(15)", nullable = false, unique = true, updatable = false)
     private String isbn;
@@ -54,4 +54,8 @@ public class Livro {
     public Year getAnoDePublicacao() {
         return Year.of(anoDePublicacao);
     }
+
+    @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL)
+    public Emprestimo emprestimo;
+
 }
