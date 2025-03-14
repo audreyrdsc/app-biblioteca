@@ -5,14 +5,14 @@ import lombok.Getter;
 @Getter
 public enum Authority {
 
-    ADMIN(1,"Administrador"),
-    USER(2,"Usuário");
+    ADMIN("ADMIN","Administrador"),
+    USER("INVIT","Convidado");
 
-    private final Integer code;
+    private final String name;
     private final String description;
 
-    Authority(Integer code, String description) {
-        this.code = code;
+    Authority(String name, String description) {
+        this.name = name;
         this.description = description;
     }
 
