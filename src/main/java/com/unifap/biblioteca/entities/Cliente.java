@@ -54,9 +54,9 @@ public class Cliente {
 	private List<Emprestimo> emprestimos;
 
 	//Este Getter deveria ser feito pelo LOMBOK mas está dando erro de dependência
-	public Long getId() {
-		return id;
-	}
+	//public Long getId() {
+	//	return id;
+	//}
 
 	@PostLoad
 	private void postLoad() {
