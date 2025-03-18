@@ -63,4 +63,13 @@ public class ClienteController {
         clienteService.persist(cliente);
         return new ModelAndView("redirect:/clientes");
     }
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        Cliente cliente = clienteService.findOrFail(id);
+        clienteService.delete(cliente);
+        return new ModelAndView("redirect:/clientes");
+    }
+
+
 }
