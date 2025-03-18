@@ -25,7 +25,7 @@ public class ClienteService {
     }
 
     @Transactional
-    public void remove(Cliente cliente) {
+    public void delete(Cliente cliente) {
         try {
             clienteRepository.deleteById(cliente.getId());
             clienteRepository.flush();
@@ -33,4 +33,5 @@ public class ClienteService {
             throw new EntityInUseException(String.format("Cliente %d em uso", cliente.getId()));
         }
     }
+
 }
