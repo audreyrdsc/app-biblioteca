@@ -61,8 +61,12 @@
 													<td th:text="${cliente.getTelephone()}"></td>
 													<td th:text="${cliente.getEmail()}"></td>
                                             		<td>
-                                            			<a th:href="@{/clientes/{id}/edit(id=${cliente.getId()})}" title="Editar"><i class="fas fa-edit fa-sm mr-2 text-primary"></i></a>
-                                            		</td>
+                                            			<a th:href="@{/clientes/{id}/edit(id=${cliente.getId()})}" title="Editar">
+															<i class="fas fa-edit fa-sm mr-2 text-primary"></i></a>
+														<a th:href="@{/clientes/{id}/delete(id=${cliente.id})}" title="Remover"
+														   onclick="return confirm('Confirma a remoção do cliente?');">
+															<i class="fas fa-trash fa-sm mr-2 text-danger"></i></a>
+													</td>
                                             	</tr>
                                             </tbody>
                                             <tfoot>
