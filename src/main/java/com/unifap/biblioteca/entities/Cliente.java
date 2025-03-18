@@ -1,11 +1,11 @@
 package com.unifap.biblioteca.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -15,24 +15,29 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Data
 public class Cliente {
 	@Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-  @Column(name = "nome", length = 100, nullable = false, unique = true)
-	private String nome;
-
-  @Column(name = "username", length = 100, nullable = false, unique = true)
-  private String username;
-
-	@Column(name = "cpf", columnDefinition = "char(11)", nullable = false, updatable = false)
+	@Column(name = "cpf", columnDefinition = "char(14)", nullable = false, updatable = false)
 	private String cpf;
 
-	@Column(name = "cellprone", columnDefinition = "char(14)")
+	@Column(name = "nome", length = 100, nullable = false, unique = true)
+	private String nome;
+
+	//@Column(name = "username", length = 100, nullable = false, unique = true)
+	//private String username;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "Nascimento é obrigatório")
+	@Column(name = "nascimento", columnDefinition = "date", nullable = false)
+	private Date nascimento;
+
+	@Column(name = "cellphone", columnDefinition = "char(15)")
 	private String cellphone;
 
-	@Column(name = "telephone", columnDefinition = "char(13)")
+	@Column(name = "telephone", columnDefinition = "char(14)")
 	private String telephone;
 
 	@Column(name = "email", length = 50, nullable = false)
@@ -40,4 +45,9 @@ public class Cliente {
 
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Emprestimo> emprestimos;
+
+	public Long getId() {
+		return this.id;
+	}
+
 }
