@@ -20,31 +20,31 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "char(15)", nullable = false, unique = true, updatable = false)
+    @Column(name = "isbn", columnDefinition = "char(15)", nullable = false, unique = true, updatable = false)
     private String isbn;
 
-    @Column(nullable = false, unique = true, length = 200)
+    @Column(name = "titulo", nullable = false, unique = true, length = 200)
     private String titulo;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "autores", nullable = false, length = 100)
     private String autores;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "editora", nullable = false, length = 100)
     private String editora;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "idioma", nullable = false, length = 100)
     private String idioma;
 
-    @Column(nullable = false)
+    @Column(name = "pagina", nullable = false)
     private int pagina;
 
-    @Column(nullable = false)
+    @Column(name = "faixa_etaria", nullable = false)
     private int faixaEtaria;
 
-    @Column(columnDefinition = "date", nullable = false)
+    @Column(name = "ano_publicacao", columnDefinition = "date", nullable = false)
     private int anoDePublicacao;
 
-    @Column(nullable = false)
+    @Column(name = "disponivel", nullable = false)
     private boolean disponivel;
 
     public void setAnoDePublicacao(int ano) {
