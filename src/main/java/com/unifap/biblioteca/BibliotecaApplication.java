@@ -13,6 +13,6 @@ public class BibliotecaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Mensagem: Aplicação em funcionamento...");
+		System.out.println("\n### Mensagem: Aplicação em funcionamento... ###\n");
 	}
 }
