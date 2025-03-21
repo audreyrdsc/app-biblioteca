@@ -1,5 +1,6 @@
 package com.unifap.biblioteca.entities;
 
+import com.unifap.biblioteca.enums.Authority;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -28,6 +29,10 @@ public class User {
     @NotBlank
     private String password;
 
-    @Column(name = "enabled", length = 1, nullable = false)
+    @Column(columnDefinition = "tinyint(1) default 1", nullable = false)
     private Boolean enabled;
+
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "char(5)", nullable = false)
+    private Authority authority;
 }
