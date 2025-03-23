@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -35,4 +40,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "char(5)", nullable = false)
     private Authority authority;
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(authority.getName()));
+    }
+
 }
