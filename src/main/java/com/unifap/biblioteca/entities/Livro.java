@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Year;
+import java.util.List;
 
 @Entity
 @Table(name = "livros")
@@ -41,19 +42,11 @@ public class Livro {
     @Column(name = "faixa_etaria", nullable = false)
     private int faixaEtaria;
 
-    @Column(name = "ano_publicacao", columnDefinition = "date", nullable = false)
-    private int anoDePublicacao;
-
-    @Column(name = "disponivel", nullable = false)
+    @Column(name = "disponivel", columnDefinition = "tinyint(1) default 1", nullable = false)
     private boolean disponivel;
 
-    public void setAnoDePublicacao(int ano) {
-        this.anoDePublicacao = Year.of(ano).getValue();
-    }
-
-    public Year getAnoDePublicacao() {
-        return Year.of(anoDePublicacao);
-    }
+    @Column(name = "ano_publicacao", columnDefinition = "char(4)")
+    private String anoDePublicacao;
 
     @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL)
     public Emprestimo emprestimo;
