@@ -11,6 +11,6 @@ import com.unifap.biblioteca.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 
-    //Optional - busca user por username
+    //Optional - busca user por username - Spring Security
     public Optional<User> findByUsername(String username);
 }

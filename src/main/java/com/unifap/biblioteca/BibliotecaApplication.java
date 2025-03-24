@@ -1,5 +1,6 @@
 package com.unifap.biblioteca;
 
+import com.unifap.biblioteca.entities.Livro;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,7 @@ public class BibliotecaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("\nSenha 123: " + new BCryptPasswordEncoder().encode("123"));
-		System.out.println("\n### Mensagem: Aplicação em funcionamento... ###\n");
+		//System.out.println("\nSenha 123: " + new BCryptPasswordEncoder().encode("123"));
+		//System.out.println("\n### Mensagem: Aplicação em funcionamento... ###\n");
 	}
 }
