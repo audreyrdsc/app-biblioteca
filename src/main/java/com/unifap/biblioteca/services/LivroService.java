@@ -1,5 +1,6 @@
 package com.unifap.biblioteca.services;
 
+import com.unifap.biblioteca.entities.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
