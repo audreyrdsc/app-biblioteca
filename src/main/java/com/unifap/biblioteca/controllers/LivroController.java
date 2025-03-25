@@ -44,6 +44,7 @@ public class LivroController {
     public ModelAndView create(@Valid Livro livro, BindingResult result) {
         if(result.hasErrors())
             return create(livro);
+        livro.setDisponivel(true); //Garantir que ao criar esteja disponível (true)
         livroService.persist(livro);
         return new ModelAndView("redirect:/livros");
     }
