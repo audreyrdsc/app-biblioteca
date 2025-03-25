@@ -99,8 +99,8 @@
                                                 <div class="form-group row">
                                                     <label for="faixaEtaria" class="col-sm-2 col-form-label">Faixa Etária</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" class="form-control" th:field="*{faixaEtaria}"
-															   th:classappend="${#fields.hasErrors('faixaEtaria')} ? is-invalid"
+														<input type="text" class="form-control" th:field="*{faixaEtaria}"
+															   th:classappend="${#fields.hasErrors('faixaEtaria')} ? 'is-invalid'"
 															   maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,2);">
                                                     </div>
 												</div>
