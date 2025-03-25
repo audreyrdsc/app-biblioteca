@@ -55,6 +55,7 @@ public class LivroController {
             livro = livroService.findOrFail(id);
         mv.addObject("livro", livro);
         mv.addObject("menu", "livros");
+        //mv.addObject("disponiveis", Disponivel.values()); ///Repassar Sim ou Não ao invés de true e false
         return mv;
     }
 

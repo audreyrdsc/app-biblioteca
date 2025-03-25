@@ -59,7 +59,7 @@ public class ClienteController {
     @PostMapping("/edit")
     public ModelAndView update(@Valid Cliente cliente, BindingResult result) {
         if(result.hasErrors())
-            return update(cliente.getId(), cliente, true);   //Este getId() não está sendo gerado pelo LOMBOK. ERRO
+            return update(cliente.getId(), cliente, true);
         clienteService.persist(cliente);
         return new ModelAndView("redirect:/clientes");
     }

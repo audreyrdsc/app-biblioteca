@@ -56,13 +56,15 @@
                                                 <div class="form-group row">
                                                     <label for="titulo" class="col-sm-2 col-form-label">Título</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" class="form-control" th:field="*{titulo}" th:classappend="${#fields.hasErrors('titulo')} ? is-invalid">
+                                                        <input type="text" class="form-control" th:field="*{titulo}"
+															   th:classappend="${#fields.hasErrors('titulo')} ? is-invalid">
                                                     </div>
                                                 </div>
 												<div class="form-group row">
 													<label for="editora" class="col-sm-2 col-form-label">Editora</label>
 													<div class="col-sm-5">
-														<input type="text" class="form-control" th:field="*{editora}" th:classappend="${#fields.hasErrors('editora')} ? is-invalid">
+														<input type="text" class="form-control" th:field="*{editora}"
+															   th:classappend="${#fields.hasErrors('editora')} ? is-invalid">
 													</div>
 												</div>
                                                 <div class="form-group row">
@@ -82,29 +84,27 @@
                                                 <div class="form-group row">
                                                     <label for="idioma" class="col-sm-2 col-form-label">Idioma</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" class="form-control" th:field="*{idioma}" th:classappend="${#fields.hasErrors('idioma')} ? is-invalid">
+                                                        <input type="text" class="form-control" th:field="*{idioma}"
+															   th:classappend="${#fields.hasErrors('idioma')} ? is-invalid">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="pagina" class="col-sm-2 col-form-label">Páginas</label>
                                                     <div class="col-sm-5">
-                                                        <input type="text" class="form-control" th:field="*{pagina}" th:classappend="${#fields.hasErrors('pagina')} ? is-invalid"
+                                                        <input type="text" class="form-control" th:field="*{pagina}"
+															   th:classappend="${#fields.hasErrors('pagina')} ? is-invalid"
 															   maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,4);">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="faixaEtaria" class="col-sm-2 col-form-label">Faixa Etária</label>
                                                     <div class="col-sm-5">
-                                                        <input type="number" class="form-control" th:field="*{faixaEtaria}" th:classappend="${#fields.hasErrors('faixaEtaria')} ? is-invalid">
+                                                        <input type="text" class="form-control" th:field="*{faixaEtaria}"
+															   th:classappend="${#fields.hasErrors('faixaEtaria')} ? is-invalid"
+															   maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,2);">
                                                     </div>
 												</div>
-                                                <!--<div class="form-group row">
-                                                    <label for="Disponivel" class="col-sm-2 col-form-label">Ststus</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="text" class="form-control" th:field="*{Disponivel}" th:classappend="${#fields.hasErrors('Disponivel')} ? is-invalid">
-                                                    </div>
-                                                </div>
-										</div> -->
+										</div>
 										<div class="card-footer">
 											<button class="btn btn-primary">
 												<i class="fas fa-save fa-sm mr-2"></i>Salvar
