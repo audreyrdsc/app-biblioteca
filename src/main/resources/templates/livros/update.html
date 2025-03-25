@@ -107,22 +107,15 @@
 														   maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,2);">
 												</div>
 											</div>
-                                            <div class="form-group row">
+											<div class="form-group row">
 												<label for="Disponivel" class="col-sm-2 col-form-label">Disponível</label>
-												<div class="col-sm-5">
-													<input type="text" class="form-control"
-														   th:classappend="${#fields.hasErrors('Disponivel')} ? is-invalid"
-														   th:value="*{Disponivel} ? 'Sim' : 'Não'">
+												<div class="col-sm-1">
+													<select class="form-control" th:field="*{Disponivel}"
+															th:classappend="${#fields.hasErrors('Disponivel')} ? 'is-invalid'">
+														<option value="true" th:selected="${Disponivel == true}">Sim</option>
+														<option value="false" th:selected="${Disponivel == false}">Não</option>
+													</select>
 												</div>
-												<!--<div class="form-group row">
-													<label for="Disponivel" class="col-sm-2 col-form-label">D Select</label>
-													<div class="col-sm-5">
-														<select class="form-control" th:field="*{disponivel}" th:classappend="${#fields.hasErrors('disponivel')} ? is-invalid">
-															<option th:value="NULL">Selecione</option>
-															<option th:each="disponivel : ${genders}" th:value="${gender.getName()}" th:text="${gender.getDescription()}"></option>
-														</select>
-													</div>
-												</div> -->
 											</div>
 										</div>
 										<div class="card-footer">
