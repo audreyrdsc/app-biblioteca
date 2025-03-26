@@ -5,10 +5,10 @@ INSERT INTO user (username, password, enabled, authority) VALUES ("joao", "$2a$1
 INSERT INTO user (username, password, enabled, authority) VALUES ("joelden", "$2a$10$Nb.gjNQ.0VvfDTX6Si/6gudpfztfYG/Pu865XukU.IVOAZJ2kTMdi", true, "ADMIN");
 INSERT INTO user (username, password, enabled, authority) VALUES ("invit", "$2a$10$Nb.gjNQ.0VvfDTX6Si/6gudpfztfYG/Pu865XukU.IVOAZJ2kTMdi", true, "INVIT");
 
-INSERT INTO cliente (cpf, nome, nascimento, cellphone, telephone, email) VALUES ('24757689080', 'Almiro José da Silva', '1992-09-02', '96999999999', '9632225432', 'almiro@email.com');
-INSERT INTO cliente (cpf, nome, nascimento, cellphone, telephone, email) VALUES ('37395125045', 'Luana Ramires da Silva', '2000-05-12', '96888888888', '9633334444', 'luana@email.com');
-INSERT INTO cliente (cpf, nome, nascimento, cellphone, telephone, email) VALUES ('45122907021', 'Anderson Lima Rodrigues', '1985-12-03', '96777777777', '9631112222', 'anderson@email.com');
-INSERT INTO cliente (cpf, nome, nascimento, cellphone, telephone, email) VALUES ('48153107003', 'Maria Bastos de Almeida', '2002-07-01', '96666666666', '9638765780', 'maria@email.com');
+INSERT INTO cliente (created_at, created_by, updated_at, updated_by, cpf, nome, nascimento, cellphone, telephone, email) VALUES (utc_timestamp,"francisco", utc_timestamp, "joao", '24757689080', 'Almiro José da Silva', '1992-09-02', '96999999999', '9632225432', 'almiro@email.com');
+INSERT INTO cliente (created_at, created_by, updated_at, updated_by, cpf, nome, nascimento, cellphone, telephone, email) VALUES (utc_timestamp,"audrey", utc_timestamp, "joelden", '37395125045', 'Luana Ramires da Silva', '2000-05-12', '96888888888', '9633334444', 'luana@email.com');
+INSERT INTO cliente (created_at, created_by, updated_at, updated_by, cpf, nome, nascimento, cellphone, telephone, email) VALUES (utc_timestamp,"francisco", utc_timestamp, "joelden", '45122907021', 'Anderson Lima Rodrigues', '1985-12-03', '96777777777', '9631112222', 'anderson@email.com');
+INSERT INTO cliente (created_at, created_by, updated_at, updated_by, cpf, nome, nascimento, cellphone, telephone, email) VALUES (utc_timestamp,"joelden", utc_timestamp, "francisco", '48153107003', 'Maria Bastos de Almeida', '2002-07-01', '96666666666', '9638765780', 'maria@email.com');
 
 
 INSERT INTO livros (isbn, titulo, autores, editora, idioma, pagina, faixa_etaria, ano_publicacao, disponivel) VALUES ('9788575225638', 'Código Limpo: Habilidades Práticas do Agile Software', 'Robert C. Martin', 'Alta Books', 'Português', 464, 14, '2009', true);
