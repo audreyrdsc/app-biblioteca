@@ -1,11 +1,15 @@
 package com.unifap.biblioteca.services;
 
 import com.unifap.biblioteca.entities.Cliente;
+import com.unifap.biblioteca.entities.User;
 import com.unifap.biblioteca.exceptions.EntityInUseException;
 import com.unifap.biblioteca.exceptions.EntityNotFoundException;
 import com.unifap.biblioteca.repositories.ClienteRepository;
+import com.unifap.biblioteca.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class ClienteService {
 
     @Autowired
+    private AuditingService auditingService;
+
+    @Autowired
     private ClienteRepository clienteRepository;
 
     public Cliente persist(Cliente cliente) {
+        cliente.setUpdatedBy(auditingService.getCurrentAuditor().orElse("Sistema")); //TESTE DE USUÁRIO ATUAL
         return clienteRepository.save(cliente);
     }
 
