@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class ClienteService {
 
@@ -23,9 +25,16 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     public Cliente persist(Cliente cliente) {
-        cliente.setUpdatedBy(auditingService.getCurrentAuditor().orElse("Sistema")); //TESTE DE USUÁRIO ATUAL
+        String userLogged = auditingService.getCurrentAuditor().orElse("Sistema");
+
+        if (cliente.getId() == null) { // Cliente novo
+            cliente.setCreatedBy(userLogged);
+        }
+
+        cliente.setUpdatedBy(userLogged);
         return clienteRepository.save(cliente);
     }
+
 
     public Cliente findOrFail(Long id) {
         return clienteRepository.findById(id)
