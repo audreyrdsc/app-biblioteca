@@ -4,10 +4,15 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +61,26 @@ public class Cliente {
 	public Long getId() {
 		return id;
 	}
+
+	// data e hora da criação do cliente
+	@CreationTimestamp
+	@Column(columnDefinition = "datetime", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+
+	// user que criou o cliente
+	@CreatedBy
+	@Column(length = 50, nullable = false, updatable = false)
+	private String createdBy;
+
+	// data e hora de última modificação
+	@UpdateTimestamp
+	@Column(columnDefinition = "datetime", nullable = false)
+	private LocalDateTime updatedAt;
+
+	// user da última modificação
+	@LastModifiedBy
+	@Column(length = 50, nullable = false)
+	private String updatedBy;
 
 	@PostLoad
 	private void postLoad() {
