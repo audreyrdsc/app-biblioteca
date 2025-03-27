@@ -55,7 +55,7 @@ public class Cliente {
 	private String email;
 
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<Emprestimo> emprestimos;
+	private List<Movimentacao> emprestimos;
 
 	//Este Getter deveria ser feito pelo LOMBOK mas está dando erro de dependência
 	public Long getId() {

@@ -52,6 +52,6 @@ public class Livro {
     private boolean disponivel;
 
     @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL)
-    public Emprestimo emprestimo;
+    public Movimentacao emprestimo;
 
 }
