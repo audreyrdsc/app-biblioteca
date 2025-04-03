@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "livros")
@@ -53,5 +55,32 @@ public class Livro {
 
     @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL)
     public Movimentacao emprestimo;
+
+    @CreationTimestamp
+	@Column(columnDefinition = "datetime", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+
+	@CreatedBy
+	@Column(length = 50, nullable = false, updatable = false)
+	private String createdBy;
+
+	@UpdateTimestamp
+	@Column(columnDefinition = "datetime", nullable = false)
+	private LocalDateTime updatedAt;
+
+	@LastModifiedBy
+	@Column(length = 50, nullable = false)
+	private String updatedBy;
+
+	@PostLoad
+	private void postLoad() {
+		this.isbn = this.isbn.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
+	}
+
+	@PrePersist @PreUpdate
+	private void prePersisPreUpdate() {
+		this.isbn = this.isbn.replaceAll("\\.|-", "");
+	}
+
 
 }
