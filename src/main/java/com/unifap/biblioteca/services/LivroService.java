@@ -26,6 +26,8 @@ public class LivroService {
         if (livroRepository.existsByIsbnAndIdNot(livro.getIsbn(), livro.getId())) {
             throw new IllegalArgumentException("Este ISBN já está cadastrado para outro livro.");
         }
+        
+        livro.setUpdatedBy(userLogged);
         return livroRepository.save(livro);
     }
 
