@@ -1,12 +1,11 @@
 package com.unifap.biblioteca.services;
 
-import com.unifap.biblioteca.entities.Cliente;
+import com.unifap.biblioteca.entities.Livro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.unifap.biblioteca.entities.Livro;
 import com.unifap.biblioteca.exceptions.EntityInUseException;
 import com.unifap.biblioteca.exceptions.EntityNotFoundException;
 import com.unifap.biblioteca.repositories.LivroRepository;
@@ -17,8 +16,13 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    @Transactional
+    @Autowired
+    private AuditingService auditingService;
+
+   
     public Livro persist(Livro livro) {
+        String userLogged = auditingService.getCurrentAuditor().orElse("Sistema");
+        
         if (livroRepository.existsByIsbnAndIdNot(livro.getIsbn(), livro.getId())) {
             throw new IllegalArgumentException("Este ISBN já está cadastrado para outro livro.");
         }
