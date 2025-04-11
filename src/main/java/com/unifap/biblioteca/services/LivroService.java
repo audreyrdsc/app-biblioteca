@@ -19,17 +19,24 @@ public class LivroService {
     @Autowired
     private AuditingService auditingService;
 
-   
     public Livro persist(Livro livro) {
         String userLogged = auditingService.getCurrentAuditor().orElse("Sistema");
-        
-        if (livroRepository.existsByIsbnAndIdNot(livro.getIsbn(), livro.getId())) {
+
+        boolean isbnDuplicado = livroRepository.existsByIsbnAndIdNot(livro.getIsbn(), livro.getId());
+        boolean novoLivro = livro.getId() == null;
+
+        if (isbnDuplicado) {
             throw new IllegalArgumentException("Este ISBN já está cadastrado para outro livro.");
         }
-        
+
+        if (novoLivro) {
+            livro.setCreatedBy(userLogged);
+        }
+
         livro.setUpdatedBy(userLogged);
         return livroRepository.save(livro);
     }
+
 
     public Livro findOrFail(Long id) {
         return livroRepository.findById(id)
