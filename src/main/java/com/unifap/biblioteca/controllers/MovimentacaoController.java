@@ -1,9 +1,13 @@
 package com.unifap.biblioteca.controllers;
 
 import com.unifap.biblioteca.entities.Cliente;
+import com.unifap.biblioteca.entities.Livro;
 import com.unifap.biblioteca.repositories.ClienteRepository;
+import com.unifap.biblioteca.repositories.LivroRepository;
 import com.unifap.biblioteca.repositories.MovimentacaoRepository;
 import com.unifap.biblioteca.services.ClienteService;
+import com.unifap.biblioteca.services.LivroService;
+import com.unifap.biblioteca.services.MovimentacaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +31,15 @@ public class MovimentacaoController {
     @Autowired
     private MovimentacaoRepository movimentacaoRepository;
 
+    @Autowired
+    private MovimentacaoService movimentacaoService;
+
+    @Autowired
+    private LivroRepository livroRepository;
+
+    @Autowired
+    private LivroService livroService;
+
     @GetMapping
     public ModelAndView list() {
         ModelAndView mv = new ModelAndView("movimentacoes/search");
@@ -38,18 +51,23 @@ public class MovimentacaoController {
     @GetMapping("/{id}/view") //Visualizar livros emprestados ao cliente
     public ModelAndView view(@PathVariable("id") Long id, Cliente cliente, boolean isInvalid) {
         ModelAndView mv = new ModelAndView("movimentacoes/view");
-        System.out.println("Passou 01");
         if(!isInvalid) {
-            System.out.println("Passou 02");
             cliente = clienteService.findOrFail(id);
         }
         mv.addObject("cliente", cliente);
-        System.out.println("Passou 03");
         mv.addObject("livrosEmprestados", movimentacaoRepository.findLivrosEmprestadosAtivosPorCliente(id));
-        System.out.println("Passou 04");
         mv.addObject("menu", "movimentacoes");
-        System.out.println("Passou 05");
         return mv;
+    }
+
+
+    @GetMapping("/{id}/delivery") //Realizar devolução de livro emprestado
+    public ModelAndView view(@PathVariable("id") Long id, Livro livro, boolean isInvalid) {
+        if(!isInvalid) {
+            livro = livroService.findOrFail(id);
+        }
+        movimentacaoService.persist(id);
+        return new ModelAndView("redirect:/movimentacoes");
     }
 
     @GetMapping("/new")
