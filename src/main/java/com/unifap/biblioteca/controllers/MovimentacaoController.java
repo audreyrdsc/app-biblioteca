@@ -24,11 +24,31 @@ public class MovimentacaoController {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    private MovimentacaoRepository movimentacaoRepository;
+
     @GetMapping
     public ModelAndView list() {
         ModelAndView mv = new ModelAndView("movimentacoes/search");
         mv.addObject("clientes", clienteRepository.findAll());
         mv.addObject("menu", "movimentacoes");
+        return mv;
+    }
+
+    @GetMapping("/{id}/view") //Visualizar livros emprestados ao cliente
+    public ModelAndView view(@PathVariable("id") Long id, Cliente cliente, boolean isInvalid) {
+        ModelAndView mv = new ModelAndView("movimentacoes/view");
+        System.out.println("Passou 01");
+        if(!isInvalid) {
+            System.out.println("Passou 02");
+            cliente = clienteService.findOrFail(id);
+        }
+        mv.addObject("cliente", cliente);
+        System.out.println("Passou 03");
+        mv.addObject("livrosEmprestados", movimentacaoRepository.findLivrosEmprestadosAtivosPorCliente(id));
+        System.out.println("Passou 04");
+        mv.addObject("menu", "movimentacoes");
+        System.out.println("Passou 05");
         return mv;
     }
 
