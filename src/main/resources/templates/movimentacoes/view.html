@@ -63,8 +63,10 @@
 													<td th:text="${livro.getAnoDePublicacao()}"></td>
 													<td th:text="${livro.isDisponivel()} ? 'Sim' : 'Não'"></td>
 													<td>
-														<a th:href="@{/movimentacoes/{id}/delivery(id=${livro.getId()})}" title="Devolução">
-															<i class="fas fa-undo-alt fa-sm mr-2 text-danger"></i></a>
+														<a th:href="@{/movimentacoes/{id}/devolver(id=${livro.getId()})}" title="Devolver"
+														   onclick="return confirm('Confirma a devolução do livro?');">
+															<i class="fas fa-undo-alt fa-sm mr-2 text-danger"></i>
+														</a>
 													</td>
 												</tr>
                                             </tbody>
@@ -82,9 +84,6 @@
 										</table>
 									</div>
 									<div class="card-footer">
-										<a th:href="@{/clientes/new}" class="btn btn-secondary">
-											<i class="fas fa-plus fa-sm mr-2"></i>Novo
-										</a>
 									</div>
 								</div>
 							</div>
