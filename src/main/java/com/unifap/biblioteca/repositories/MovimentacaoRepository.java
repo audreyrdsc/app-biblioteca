@@ -20,5 +20,8 @@ public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Long
     @Query("SELECT m FROM Movimentacao m WHERE m.livro.id = :livroId AND m.dataDevolucao IS NULL")
     Optional<Movimentacao> findByLivroIdAndDataDevolucaoIsNull(@Param("livroId") Long livroId);
 
+    @Query("SELECT m FROM Movimentacao m WHERE m.livro.id = :livroId AND m.dataDevolucao IS NOT NULL")
+    Optional<Movimentacao> findByLivroIdAndDataDevolucaoIsNotNull(@Param("livroId") Long livroId);
+
 
 }
