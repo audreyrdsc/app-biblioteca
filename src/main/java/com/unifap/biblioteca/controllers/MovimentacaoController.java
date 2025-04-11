@@ -8,14 +8,9 @@ import com.unifap.biblioteca.repositories.MovimentacaoRepository;
 import com.unifap.biblioteca.services.ClienteService;
 import com.unifap.biblioteca.services.LivroService;
 import com.unifap.biblioteca.services.MovimentacaoService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -48,7 +43,7 @@ public class MovimentacaoController {
         return mv;
     }
 
-    @GetMapping("/{id}/view") //Visualizar livros emprestados ao cliente
+    @GetMapping("/{id}/view") //Visualizar livros emprestados pelo cliente
     public ModelAndView view(@PathVariable("id") Long id, Cliente cliente, boolean isInvalid) {
         ModelAndView mv = new ModelAndView("movimentacoes/view");
         if(!isInvalid) {
@@ -60,55 +55,34 @@ public class MovimentacaoController {
         return mv;
     }
 
-
-    @GetMapping("/{id}/delivery") //Realizar devolução de livro emprestado
-    public ModelAndView view(@PathVariable("id") Long id, Livro livro, boolean isInvalid) {
+    @GetMapping("/{id}/emprestimo") //Visualizar livros disponíveis para empréstimo
+    public ModelAndView emprestimo(@PathVariable("id") Long id, Cliente cliente, boolean isInvalid) {
+        ModelAndView mv = new ModelAndView("movimentacoes/emprestimo");
         if(!isInvalid) {
-            livro = livroService.findOrFail(id);
+            cliente = clienteService.findOrFail(id);
         }
-        movimentacaoService.persist(id);
+        System.out.println("Id Cliente: " + cliente.getId()); //////
+        mv.addObject("cliente", cliente);
+        mv.addObject("livrosDisponiveis", livroRepository.findByDisponivelTrue());
+        mv.addObject("menu", "movimentacoes");
+        return mv;
+    }
+
+    @GetMapping("/{id}/emprestar")
+    public ModelAndView emprestar(@PathVariable("id") Long idLivro,
+                                  @RequestParam("clienteId") Long clienteId) {
+        movimentacaoService.emprestar(idLivro, clienteId);
         return new ModelAndView("redirect:/movimentacoes");
     }
 
-    @GetMapping("/new")
-    public ModelAndView create(Cliente cliente) {
-        ModelAndView mv = new ModelAndView("clientes/create");
-        mv.addObject("menu", "clientes");
-        return mv;
-    }
 
-    @PostMapping("/new")
-    public ModelAndView create(@Valid Cliente cliente, BindingResult result) {
-        if(result.hasErrors())
-            return create(cliente);
-        clienteService.persist(cliente);
-        return new ModelAndView("redirect:/clientes");
+    @GetMapping("/{id}/devolver") //Realizar devolução de livro emprestado
+    public ModelAndView devolver(@PathVariable("id") Long id, Livro livro, boolean isInvalid) {
+        if(!isInvalid) {
+            livro = livroService.findOrFail(id);
+        }
+        movimentacaoService.devolver(id);
+        return new ModelAndView("redirect:/movimentacoes");
     }
-
-    @GetMapping("/{id}/edit")
-    public ModelAndView update(@PathVariable("id") Long id, Cliente cliente, boolean isInvalid) {
-        ModelAndView mv = new ModelAndView("clientes/update");
-        if(!isInvalid)
-            cliente = clienteService.findOrFail(id);
-        mv.addObject("cliente", cliente);
-        mv.addObject("menu", "clientes");
-        return mv;
-    }
-
-    @PostMapping("/edit")
-    public ModelAndView update(@Valid Cliente cliente, BindingResult result) {
-        if(result.hasErrors())
-            return update(cliente.getId(), cliente, true);
-        clienteService.persist(cliente);
-        return new ModelAndView("redirect:/clientes");
-    }
-
-    @GetMapping("/{id}/delete")
-    public ModelAndView delete(@PathVariable("id") Long id) {
-        Cliente cliente = clienteService.findOrFail(id);
-        clienteService.delete(cliente);
-        return new ModelAndView("redirect:/clientes");
-    }
-
 
 }
