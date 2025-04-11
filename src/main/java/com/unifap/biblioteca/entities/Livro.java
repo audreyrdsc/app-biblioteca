@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "livros")
@@ -57,8 +58,9 @@ public class Livro {
     @Column(name = "disponivel", columnDefinition = "tinyint(1) default 1", nullable = false)
     private boolean disponivel;
 
-    @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL)
-    public Movimentacao emprestimo;
+    @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
+    private List<Movimentacao> emprestimos;
+
 
     @CreationTimestamp
 	@Column(columnDefinition = "datetime", nullable = false, updatable = false)

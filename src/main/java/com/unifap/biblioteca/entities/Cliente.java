@@ -57,11 +57,6 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Movimentacao> emprestimos;
 
-	//Este Getter deveria ser feito pelo LOMBOK mas está dando erro de dependência
-	public Long getId() {
-		return id;
-	}
-
 	// data e hora da criação do cliente
 	@CreationTimestamp
 	@Column(columnDefinition = "datetime", nullable = false, updatable = false)
