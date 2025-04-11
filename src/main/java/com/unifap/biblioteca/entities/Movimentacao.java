@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,13 +22,13 @@ public class Movimentacao {
     private Long id;
 
     @Column(name = "data_emprestimo", columnDefinition = "date", nullable = false)
-    private Date dataEmprestimo;
+    private LocalDate dataEmprestimo;
 
     @Column(name = "data_termino", columnDefinition = "date", nullable = false)
-    private Date dataTermino;
+    private LocalDate dataTermino;
 
     @Column(name = "data_devolucao", columnDefinition = "date", nullable = true)
-    private Date dataDevolucao;
+    private LocalDate dataDevolucao;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
