@@ -69,19 +69,19 @@ public class MovimentacaoController {
     }
 
     @GetMapping("/{id}/emprestar")
-    public ModelAndView emprestar(@PathVariable("id") Long idLivro,
-                                  @RequestParam("clienteId") Long clienteId) {
+    public ModelAndView emprestar(@PathVariable("id") Long idLivro, @RequestParam("clienteId") Long clienteId) {
         movimentacaoService.emprestar(idLivro, clienteId);
         return new ModelAndView("redirect:/movimentacoes");
     }
 
 
     @GetMapping("/{id}/devolver") //Realizar devolução de livro emprestado
-    public ModelAndView devolver(@PathVariable("id") Long id, Livro livro, boolean isInvalid) {
+    public ModelAndView devolver(@PathVariable("id") Long idLivro, @RequestParam("clienteId") Long clienteId,
+                                 Livro livro, boolean isInvalid) {
         if(!isInvalid) {
-            livro = livroService.findOrFail(id);
+            livro = livroService.findOrFail(idLivro);
         }
-        movimentacaoService.devolver(id);
+        movimentacaoService.devolver(idLivro, clienteId);
         return new ModelAndView("redirect:/movimentacoes");
     }
 
