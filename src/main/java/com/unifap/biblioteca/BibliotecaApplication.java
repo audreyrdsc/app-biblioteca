@@ -13,7 +13,5 @@ public class BibliotecaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//System.out.println("\nSenha 123: " + new BCryptPasswordEncoder().encode("123"));
-		//System.out.println("\n### Mensagem: Aplicação em funcionamento... ###\n");
 	}
 }
