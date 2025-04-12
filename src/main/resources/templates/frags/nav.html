@@ -15,17 +15,14 @@
 							<li class="nav-item" th:classappend="${menu} == 'home' ? 'active'">
 								<a th:href="@{/}" class="nav-link"><i class="fas fa-home fa-sm mr-2"></i>Início</a>
 							</li>
-							<!--<li class="nav-item" th:classappend="${menu} == 'associates' ? 'active'">
-								<a th:href="@{/associates}" class="nav-link"><i class="fas fa-associates fa-sm mr-2"></i>Associados</a>
-							</li> -->
 							<li class="nav-item" th:classappend="${menu} == 'clientes' ? 'active'">
-								<a th:href="@{/clientes}" class="nav-link"><i class="fas fa-clientes fa-sm mr-2"></i>Clientes</a>
+								<a th:href="@{/clientes}" class="nav-link"><i class="fas fa-users fa-sm mr-2"></i>Clientes</a>
 							</li>
 							<li class="nav-item" th:classappend="${menu} == 'livros' ? 'active'">
-								<a th:href="@{/livros}" class="nav-link"><i class="fas fa-livros fa-sm mr-2"></i>Livros</a>
+								<a th:href="@{/livros}" class="nav-link"><i class="fas fa-book fa-sm mr-2"></i>Livros</a>
 							</li>
 							<li class="nav-item" th:classappend="${menu} == 'movimentacoes' ? 'active'">
-								<a th:href="@{/movimentacoes}" class="nav-link"><i class="fas fa-movimentacoes fa-sm mr-2"></i>Movimentações</a>
+								<a th:href="@{/movimentacoes}" class="nav-link"><<i class="fas fa-exchange-alt"></i> Movimentações</a>
 							</li>
 						</ul>
 					</div>
