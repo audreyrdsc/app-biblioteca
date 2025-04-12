@@ -29,9 +29,17 @@ public class MovimentacaoService {
     private LivroRepository livroRepository;
 
     @Transactional
-    public Movimentacao devolver(Long idLivro) {
+    public Movimentacao devolver(Long idLivro, Long idCliente) {
+        String userLogged = auditingService.getCurrentAuditor().orElse("Sistema");
         Movimentacao movimentacao = movimentacaoRepository.findByLivroIdAndDataDevolucaoIsNull(idLivro)
                 .orElseThrow(() -> new EntityNotFoundException("Nenhum empréstimo ativo encontrado para o livro " + idLivro));
+
+        Cliente cliente = clienteRepository.findById(idCliente)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado: " + idCliente));
+
+        //cliente.setUpdatedBy(userLogged);
+
+        movimentacao.setUpdatedBy(userLogged);
         movimentacao.setDataDevolucao(LocalDateTime.now());
         movimentacao.getLivro().setDisponivel(true);
         return movimentacaoRepository.save(movimentacao);
@@ -40,6 +48,7 @@ public class MovimentacaoService {
 
     @Transactional
     public Movimentacao emprestar(Long idLivro, Long idCliente) {
+        String userLogged = auditingService.getCurrentAuditor().orElse("Sistema"); //////
         Livro livro = livroRepository.findById(idLivro)
                 .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado: " + idLivro));
 
@@ -51,6 +60,8 @@ public class MovimentacaoService {
                 .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado: " + idCliente));
 
         Movimentacao movimentacao = new Movimentacao();
+            movimentacao.setCreatedBy(userLogged);
+            movimentacao.setUpdatedBy(userLogged);
             movimentacao.setLivro(livro);
             movimentacao.setCliente(cliente);
             movimentacao.setDataEmprestimo(LocalDateTime.now());
