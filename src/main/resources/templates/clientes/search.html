@@ -44,24 +44,24 @@
 										<table class="table table-bordered table-striped grid">
 											<thead>
 												<tr>
-													<th>CPF</th>
-													<th>Nome</th>
-													<th>Nascimento</th>
-													<th>Celular</th>
-													<th>Telefone</th>
-													<th>Email</th>
-													<th>Ações</th>
+													<th class="text-center">CPF</th>
+													<th class="text-center">Nome</th>
+													<th class="text-center">Nascimento</th>
+													<th class="text-center">Celular</th>
+													<th class="text-center">Telefone</th>
+													<th class="text-center">Email</th>
+													<th class="text-center">Ações</th>
 												</tr>
                                             </thead>
                                             <tbody>
                                             	<tr th:each="cliente : ${clientes}">
-                                            		<td th:text="${cliente.getCpf()}"></td>
+                                            		<td class="text-center" th:text="${cliente.getCpf()}"></td>
                                             		<td th:text="${cliente.getNome()}"></td>
-                                            		<td th:text="${#dates.format(cliente.getNascimento(), 'dd-MM-yyyy')}"></td>
-                                            		<td th:text="${cliente.getCellphone()}"></td>
-													<td th:text="${cliente.getTelephone()}"></td>
+                                            		<td class="text-center" th:text="${#dates.format(cliente.getNascimento(), 'dd-MM-yyyy')}"></td>
+                                            		<td class="text-center" th:text="${cliente.getCellphone()}"></td>
+													<td class="text-center" th:text="${cliente.getTelephone()}"></td>
 													<td th:text="${cliente.getEmail()}"></td>
-                                            		<td>
+													<td class="text-center align-middle">
                                             			<a th:href="@{/clientes/{id}/edit(id=${cliente.getId()})}" title="Editar">
 															<i class="fas fa-edit fa-sm mr-2 text-primary"></i></a>
 														<a th:href="@{/clientes/{id}/delete(id=${cliente.id})}" title="Remover"
@@ -72,13 +72,13 @@
                                             </tbody>
                                             <tfoot>
                                             	<tr>
-													<th>CPF</th>
-													<th>Nome</th>
-													<th>Nascimento</th>
-													<th>Celular</th>
-													<th>Telefone</th>
-													<th>Email</th>
-													<th>Ações</th>
+													<th class="text-center">CPF</th>
+													<th class="text-center">Nome</th>
+													<th class="text-center">Nascimento</th>
+													<th class="text-center">Celular</th>
+													<th class="text-center">Telefone</th>
+													<th class="text-center">Email</th>
+													<th class="text-center">Ações</th>
                                             	</tr>
                                             </tfoot>
 										</table>

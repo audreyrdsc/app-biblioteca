@@ -44,24 +44,24 @@
 										<table class="table table-bordered table-striped grid">
 											<thead>
 												<tr>
-													<th>Isbn</th>
-													<th>Titulo</th>
-													<th>Autores</th>
-													<th>Idioma</th>
-													<th>Ano De Publicação</th>
-                                                    <th>Disponível</th>
-													<th>Ações</th>
+													<th class="text-center">Isbn</th>
+													<th class="text-center">Titulo</th>
+													<th class="text-center">Autores</th>
+													<th class="text-center">Idioma</th>
+													<th class="text-center">Ano</th>
+                                                    <th class="text-center">Disponível</th>
+													<th class="text-center">Ações</th>
 												</tr>
                                             </thead>
                                             <tbody>
                                             	<tr th:each="livro : ${livros}">
-                                            		<td th:text="${livro.getIsbn()}"></td>
+                                            		<td class="text-center" th:text="${livro.getIsbn()}"></td>
                                             		<td th:text="${livro.getTitulo()}"></td>
                                             		<td th:text="${livro.getAutores()}"></td>
-													<td th:text="${livro.getIdioma()}"></td>
-													<td th:text="${livro.getAnoDePublicacao()}"></td>
-													<td th:text="${livro.isDisponivel()} ? 'Sim' : 'Não'"></td>
-                                            		<td>
+													<td class="text-center" th:text="${livro.getIdioma()}"></td>
+													<td class="text-center" th:text="${livro.getAnoDePublicacao()}"></td>
+													<td class="text-center" th:text="${livro.isDisponivel()} ? 'Sim' : 'Não'"></td>
+													<td class="text-center align-middle">
                                             			<a th:href="@{/livros/{id}/edit(id=${livro.getId()})}" title="Editar">
 															<i class="fas fa-edit fa-sm mr-2 text-primary"></i></a>
 														<a th:href="@{/livros/{id}/delete(id=${livro.id})}" title="Remover"
@@ -72,13 +72,13 @@
                                             </tbody>
                                             <tfoot>
                                             	<tr>
-													<th>Isbn</th>
-													<th>Titulo</th>
-													<th>Autores</th>
-													<th>Idioma</th>
-													<th>Ano De Publicação</th>
-                                                    <th>Disponível</th>
-													<th>Ações</th>
+													<th class="text-center">Isbn</th>
+													<th class="text-center">Titulo</th>
+													<th class="text-center">Autores</th>
+													<th class="text-center">Idioma</th>
+													<th class="text-center">Ano</th>
+                                                    <th class="text-center">Disponível</th>
+													<th class="text-center">Ações</th>
                                             	</tr>
                                             </tfoot>
 										</table>
