@@ -61,7 +61,6 @@ public class MovimentacaoController {
         if(!isInvalid) {
             cliente = clienteService.findOrFail(id);
         }
-        System.out.println("Id Cliente: " + cliente.getId()); //////
         mv.addObject("cliente", cliente);
         mv.addObject("livrosDisponiveis", livroRepository.findByDisponivelTrue());
         mv.addObject("menu", "movimentacoes");

@@ -34,11 +34,7 @@ public class MovimentacaoService {
         Movimentacao movimentacao = movimentacaoRepository.findByLivroIdAndDataDevolucaoIsNull(idLivro)
                 .orElseThrow(() -> new EntityNotFoundException("Nenhum empréstimo ativo encontrado para o livro " + idLivro));
 
-        Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado: " + idCliente));
-
-        //cliente.setUpdatedBy(userLogged);
-
+        //Operações para devolução do livro
         movimentacao.setUpdatedBy(userLogged);
         movimentacao.setDataDevolucao(LocalDateTime.now());
         movimentacao.getLivro().setDisponivel(true);
@@ -59,6 +55,7 @@ public class MovimentacaoService {
         Cliente cliente = clienteRepository.findById(idCliente)
                 .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado: " + idCliente));
 
+        //Operações para emprestar o livro
         Movimentacao movimentacao = new Movimentacao();
             movimentacao.setCreatedBy(userLogged);
             movimentacao.setUpdatedBy(userLogged);
@@ -66,8 +63,7 @@ public class MovimentacaoService {
             movimentacao.setCliente(cliente);
             movimentacao.setDataEmprestimo(LocalDateTime.now());
             movimentacao.setDataTermino(LocalDateTime.now().plusDays(15));
-
-        livro.setDisponivel(false);
+            movimentacao.getLivro().setDisponivel(false);
 
         return movimentacaoRepository.save(movimentacao);
     }
